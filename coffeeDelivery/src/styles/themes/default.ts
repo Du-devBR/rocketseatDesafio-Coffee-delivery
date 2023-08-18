@@ -1,6 +1,6 @@
 export const defaultThemes = {
 
-  color: {
+
     'yellow-light': '#F1E9C9',
     'yellow': '#DBAC2C',
     'yellow-dark': '#C47F17',
@@ -18,8 +18,7 @@ export const defaultThemes = {
     'base-label': '#8D8686',
     'base-text': '#574F4D',
     'base-subtitle':'#403937',
-    'base-title': '#272221',
-  },
+
 
   font_roboto: {
     'Text L': '1.25rem',

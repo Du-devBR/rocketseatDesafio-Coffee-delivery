@@ -5,7 +5,7 @@ export const ContainerLocation = styled.div`
   gap: 0.25rem;
   align-items: center;
   padding: 0.5rem;
-  background: ${props => props.theme.color["purple-light"]};
+  background: ${props => props.theme["purple-light"]};
   border-radius: 0.375rem;
   border: none;
 
@@ -13,10 +13,10 @@ export const ContainerLocation = styled.div`
     font-size: ${props => props.theme.font_roboto["Text S"]};
     font-weight: 400;
     line-height: 160%;
-    color: ${props => props.theme.color["purple-dark"]};
+    color: ${props => props.theme["purple-dark"]};
   }
 `
 
 export const MapPinStyle = styled.span`
-  color: ${props => props.theme.color.purple};
+  color: ${props => props.theme.purple};
 `

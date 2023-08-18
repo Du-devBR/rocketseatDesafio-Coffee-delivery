@@ -1,7 +1,8 @@
 import { HeaderContainer, NavContainer } from "./style";
 import logo from '../../assets/img/logo.png'
 import { Location } from "./components/Location";
-import { Cart } from "./components/Cart";
+import { Cart } from "../Cart";
+
 
 export function Header(){
   return(
