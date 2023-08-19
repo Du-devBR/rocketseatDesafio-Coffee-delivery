@@ -1,8 +1,10 @@
 import { products } from "../../assets/mock/products"
+import { Card } from "../../components/Card"
+import { ContainerHome } from "./style"
 
 export function Home(){
   return(
-    <div>
+    <ContainerHome>
       <h1>Home</h1>
     {/* {
       products.map((product) => (
@@ -12,7 +14,8 @@ export function Home(){
         </div>
       ))
     } */}
-    </div>
+    <Card />
+    </ContainerHome>
   )
 
 }
