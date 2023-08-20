@@ -1,19 +1,33 @@
+import { IProducts } from "../../assets/mock/products";
 import { Cart } from "../Cart";
-import { ContainerCard, FooterCard, HeaderCard, MainCard } from "./style";
-import img from '../../assets/img/imgProducts/Type=Americano.png'
-export function Card(){
+import { Counter } from "../Counter";
+import { ContainerCard, ContainerPrice, FooterCard, HeaderCard, MainCard, TagName, TagsProduct } from "./style";
+
+export function Card({picture, name, price, description, types}: IProducts){
   return(
     <ContainerCard>
       <HeaderCard>
-        <img src={img} alt="" />
-        <span>tradicional</span>
+        <img src={picture} alt="" />
+        <TagsProduct>
+          {
+            types.map((type, idx) => (
+              <TagName key={idx}>
+                <span>{type}</span>
+              </TagName>
+            ))
+          }
+        </TagsProduct>
       </HeaderCard>
       <MainCard>
-        <h2>Expresso tradicional</h2>
-        <p>O tradicional café feito com água quente e grãos moídos</p>
+        <h2>{name}</h2>
+        <p>{description}</p>
       </MainCard>
       <FooterCard>
-        <span>R$ 9,90</span>
+        <ContainerPrice>
+          <span>R$</span>
+          <span>{price.toFixed(2)}</span>
+        </ContainerPrice>
+        <Counter />
         <Cart color="purple"/>
       </FooterCard>
     </ContainerCard>

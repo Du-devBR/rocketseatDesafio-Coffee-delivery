@@ -1,20 +1,25 @@
 import { products } from "../../assets/mock/products"
 import { Card } from "../../components/Card"
-import { ContainerHome } from "./style"
+import { ContainerHome, ContainerProducts } from "./style"
 
 export function Home(){
   return(
     <ContainerHome>
-      <h1>Home</h1>
-    {/* {
-      products.map((product) => (
-        <div>
-          <h1>{product.name}</h1>
-          <img src={product.picture} alt="" />
-        </div>
-      ))
-    } */}
-    <Card />
+      <h1>Nossos cafés</h1>
+      <ContainerProducts>
+        {
+          products.map((product) => (
+            <Card
+              key={product.id}
+              picture= {product.picture}
+              types= {product.types}
+              name= {product.name}
+              description= {product.description}
+              price= {product.price}
+            />
+          ))
+        }
+      </ContainerProducts>
     </ContainerHome>
   )
 
