@@ -20,6 +20,12 @@ export const ContainerCart = styled.div<ICartThemeProps>`
   padding: 0.5rem;
   border-radius: 0.375rem;
   background: ${props => props.theme[CART_THEME[props.cartTheme].background]};
+  transition: 0.5s;
+
+  &:hover {
+    box-shadow: 1px 2px 10px 1px ${props => props.theme.purple};
+    transition: 0.5s;
+  }
 `
 
 

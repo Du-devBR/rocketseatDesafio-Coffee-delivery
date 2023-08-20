@@ -1,24 +1,37 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { IProducts } from "../../assets/mock/products";
 import { Cart } from "../Cart";
 import { Counter } from "../Counter";
 import { ContainerCard, ContainerPrice, FooterCard, HeaderCard, MainCard, TagName, TagsProduct } from "./style";
 import { ProductsContext } from "../../context/ProductsContext";
 
-export function Card({id, picture, name, price, description, types}: IProducts){
-  const {handleProductToCart} = useContext(ProductsContext)
 
-  function teste(){
+export function Card({id, picture, name, price, description, types}: IProducts){
+  const {handleAddProductToCart, handleRemoveProductToCart} = useContext(ProductsContext)
+
+  const [itemQuantity, setItemQuantity] = useState(1)
+
+  function addProductToCart(){
     const product = {
       id,
       picture,
       name,
-      price
+      price,
     };
-    handleProductToCart(product)
+    handleAddProductToCart(product, itemQuantity)
+    setItemQuantity(1)
   }
+
+  function removeProductToCart(id: number | undefined){
+
+    if(id !== undefined){
+      handleRemoveProductToCart(id)
+      console.log(id)
+    }
+  }
+
   return(
-    <ContainerCard>
+    <ContainerCard isActive={itemQuantity > 1}>
       <HeaderCard>
         <img src={picture} alt="" />
         <TagsProduct>
@@ -40,8 +53,13 @@ export function Card({id, picture, name, price, description, types}: IProducts){
           <span>R$</span>
           <span>{price.toFixed(2)}</span>
         </ContainerPrice>
-        <Counter onSome={teste}/>
-        <Cart color="purple"/>
+        <Counter
+          onQuantItem={itemQuantity}
+          onAddItem={() => setItemQuantity(itemQuantity + 1)}
+          onRemoveItem={() => setItemQuantity(itemQuantity - 1)}
+          onRemoveCart={() => removeProductToCart(id)}
+        />
+        <Cart color="purple" onAddCart={addProductToCart}/>
       </FooterCard>
     </ContainerCard>
   )

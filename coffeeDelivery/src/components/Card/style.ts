@@ -1,12 +1,25 @@
-import { styled } from "styled-components";
+import { css, styled } from "styled-components";
 
-export const ContainerCard = styled.div`
+interface IActiveCard {
+  isActive: boolean;
+}
+
+export const ContainerCard = styled.div<IActiveCard>`
   width: 256px;
   display: flex;
   flex-direction: column;
   background: ${props => props.theme["base-card"]};
   border-radius: 0.375rem 2.25rem 0.375rem 2.25rem;
   padding: 0 1.25rem 1.25rem 1.25rem;
+
+  transition: 0.5s;
+
+  ${props => props.isActive && css
+    `
+      box-shadow: 1px 2px 10px 1px ${props => props.theme.purple};
+      transition: 0.5s;
+    `
+  }
 `
 
 export const HeaderCard = styled.header`

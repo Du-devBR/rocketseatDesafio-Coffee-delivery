@@ -1,11 +1,18 @@
 import { ContainerCounter } from "./style";
 
-export function Counter({onSome}){
+interface IHandleProductToCart {
+  onQuantItem: number
+  onAddItem?: () => void
+  onRemoveItem?: () => void
+  onRemoveCart?:() => void
+}
+
+export function Counter({ onRemoveCart, onAddItem, onRemoveItem, onQuantItem}: IHandleProductToCart){
   return(
     <ContainerCounter>
-      <button></button>
-      <span>0</span>
-      <button onClick={onSome}></button>
+      <button onClick={onRemoveItem} disabled={onQuantItem <= 1}></button>
+      <span>{onQuantItem}</span>
+      <button onClick={onAddItem}></button>
     </ContainerCounter>
   )
 }
