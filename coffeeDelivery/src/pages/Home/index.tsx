@@ -1,16 +1,22 @@
-import { products } from "../../assets/mock/products"
+import { useContext } from "react"
+import { productsDb } from "../../assets/mock/products"
 import { Card } from "../../components/Card"
+import { ProductsContext } from "../../context/ProductsContext"
 import { ContainerHome, ContainerProducts } from "./style"
 
 export function Home(){
+  const {products} = useContext(ProductsContext)
+
+  console.log(products)
   return(
     <ContainerHome>
       <h1>Nossos cafés</h1>
       <ContainerProducts>
         {
-          products.map((product) => (
+          productsDb.map((product) => (
             <Card
               key={product.id}
+              id={product.id}
               picture= {product.picture}
               types= {product.types}
               name= {product.name}

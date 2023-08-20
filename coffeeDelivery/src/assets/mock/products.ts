@@ -15,16 +15,16 @@ import cafeArabe from '../img/imgProducts/Type=Árabe.png'
 
 
 export interface IProducts {
-  id?: number,
-  picture: string,
+  id?: number | undefined,
+  picture: string | undefined,
   types: string[],
-  name: string,
-  description: string,
+  name: string | undefined,
+  description: string | undefined,
   price: number,
 }
 
 
-export const products: IProducts[] = [
+export const productsDb: IProducts[] = [
   {
     id: 1,
     picture: cafeExpresso,

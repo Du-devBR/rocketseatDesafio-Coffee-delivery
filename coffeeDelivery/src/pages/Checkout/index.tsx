@@ -1,5 +1,21 @@
+import { useContext } from "react"
+import { ProductsContext } from "../../context/ProductsContext"
+
 export function Checkout(){
+
+  const {products} = useContext(ProductsContext)
+
   return(
-    <h1>checkout</h1>
+    <div>
+      <h1>checkout</h1>
+        {
+          products.map(product => (
+            <div>
+              <p>{product.name}</p>
+              <img src={product.picture} alt="" />
+            </div>
+          ))
+        }
+    </div>
   )
 }
