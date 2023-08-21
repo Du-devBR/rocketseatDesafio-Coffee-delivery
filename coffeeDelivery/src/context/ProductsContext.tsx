@@ -1,6 +1,6 @@
 import { ReactNode, createContext, useReducer } from "react"
 import { IProduct, productsReducer } from "../reducer/products/reducer"
-import { addProductToCart, removeProductToCart } from "../reducer/products/action"
+import { addProductToCart, removeProductToCart, testeAction } from "../reducer/products/action"
 
 interface ProductsContextType {
   products: IProduct[];
@@ -8,6 +8,7 @@ interface ProductsContextType {
   // quant: number
   handleAddProductToCart: (data: IProduct) => void;
   handleRemoveProductToCart: (id: number) => void
+  teste: (data: IProduct) => void
 }
 export const ProductsContext = createContext({} as ProductsContextType )
 
@@ -32,9 +33,13 @@ export function ProductsContextProvider({children}: ProductsContextProviderProps
   function handleRemoveProductToCart(id: number){
     dispatch(removeProductToCart(id))
   }
+
+  function teste(teste: IProduct){
+    dispatch(testeAction(teste))
+  }
   return(
     <ProductsContext.Provider
-      value={{products, countItens, handleAddProductToCart, handleRemoveProductToCart}}
+      value={{products, countItens, handleAddProductToCart, handleRemoveProductToCart, teste}}
     >
       {children}
     </ProductsContext.Provider>

@@ -5,9 +5,15 @@ import { ProductsContext } from "../../context/ProductsContext";
 
 export function Summary(){
 
-  const {products, } = useContext(ProductsContext)
+  const {products, handleRemoveProductToCart} = useContext(ProductsContext)
 
-  console.log(products)
+  function removeProductToCart(id: number | undefined){
+
+    if(id !== undefined){
+      handleRemoveProductToCart(id)
+    }
+  }
+
   return(
     <SummaryContainer>
       {
@@ -19,6 +25,7 @@ export function Summary(){
             name={order.product.name}
             price={order.product.price}
             onQuant={order?.quant}
+            onRemoveCart={() => removeProductToCart(order.product.id)}
           />
         ))
       }

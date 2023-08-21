@@ -6,7 +6,7 @@ export interface IProduct {
     id?: number;
     picture: string | undefined;
     name: string | undefined;
-    price: number | undefined;
+    price: number
   }
   quant: number
 }
@@ -38,19 +38,25 @@ export function productsReducer(state: IProductstate, action: any){
         };
       }
 
-
-
     case ActionTypes.REMOVE_PRODUCT_CART:
-      const indexToRemove = state.products.findIndex(product => product.product.id === action.payload);
-      if (indexToRemove !== -1) {
-        const newProducts = [...state.products.slice(0, indexToRemove), ...state.products.slice(indexToRemove + 1)];
+      const productRemove = state.products.find(product => product.product.id === action.payload);
+      if (productRemove) {
+
+        const newProducts = state.products.filter(product => product.product.id !== action.payload)
         return {
           ...state,
           products: newProducts,
-          countItens: state.countItens - 1,
+          countItens: state.countItens - productRemove.quant,
         };
       }
       return state;
+
+    case ActionTypes.TESTE:
+        return{
+          ...state,
+          products: [...state.products, action.payload],
+          countItens: state.countItens + action.payload.quant
+        }
     default:
       return state
   }

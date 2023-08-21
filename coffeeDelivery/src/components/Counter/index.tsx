@@ -7,10 +7,13 @@ interface IHandleProductToCart {
   onRemoveCart?:() => void
 }
 
-export function Counter({ onRemoveCart, onAddItem, onRemoveItem, onQuantItem}: IHandleProductToCart){
+export function Counter({ onAddItem, onRemoveItem, onQuantItem}: IHandleProductToCart){
+  const handleButtonRemove = onRemoveItem
+
   return(
+
     <ContainerCounter>
-      <button onClick={onRemoveItem} disabled={onQuantItem <= 1}></button>
+      <button onClick={handleButtonRemove} disabled={onQuantItem <= 1}></button>
       <span>{onQuantItem}</span>
       <button onClick={onAddItem}></button>
     </ContainerCounter>

@@ -60,7 +60,6 @@ export function Card({id, picture, name, price, description, types}: IProducts){
           onQuantItem={quant}
           onAddItem={() => setQuant(quant + 1)}
           onRemoveItem={() => setQuant(quant - 1)}
-          onRemoveCart={() => removeProductToCart(id)}
         />
         <Cart color="purple" onAddCart={addProductToCart} isActive={quant > 1}/>
       </FooterCard>
