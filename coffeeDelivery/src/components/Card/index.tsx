@@ -9,17 +9,20 @@ import { ProductsContext } from "../../context/ProductsContext";
 export function Card({id, picture, name, price, description, types}: IProducts){
   const {handleAddProductToCart, handleRemoveProductToCart} = useContext(ProductsContext)
 
-  const [itemQuantity, setItemQuantity] = useState(1)
+  const [quant, setQuant] = useState(1)
 
   function addProductToCart(){
-    const product = {
-      id,
-      picture,
-      name,
-      price,
+    const productData = {
+      product: {
+        id,
+        picture,
+        name,
+        price,
+      },
+      quant,
     };
-    handleAddProductToCart(product, itemQuantity)
-    setItemQuantity(1)
+    handleAddProductToCart(productData)
+    setQuant(1)
   }
 
   function removeProductToCart(id: number | undefined){
@@ -31,7 +34,7 @@ export function Card({id, picture, name, price, description, types}: IProducts){
   }
 
   return(
-    <ContainerCard isActive={itemQuantity > 1}>
+    <ContainerCard isActive={quant > 1}>
       <HeaderCard>
         <img src={picture} alt="" />
         <TagsProduct>
@@ -54,12 +57,12 @@ export function Card({id, picture, name, price, description, types}: IProducts){
           <span>{price.toFixed(2)}</span>
         </ContainerPrice>
         <Counter
-          onQuantItem={itemQuantity}
-          onAddItem={() => setItemQuantity(itemQuantity + 1)}
-          onRemoveItem={() => setItemQuantity(itemQuantity - 1)}
+          onQuantItem={quant}
+          onAddItem={() => setQuant(quant + 1)}
+          onRemoveItem={() => setQuant(quant - 1)}
           onRemoveCart={() => removeProductToCart(id)}
         />
-        <Cart color="purple" onAddCart={addProductToCart}/>
+        <Cart color="purple" onAddCart={addProductToCart} isActive={quant > 1}/>
       </FooterCard>
     </ContainerCard>
   )

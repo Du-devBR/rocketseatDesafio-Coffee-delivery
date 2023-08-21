@@ -1,4 +1,4 @@
-import { css, styled } from "styled-components";
+import { styled } from "styled-components";
 
 interface IActiveCard {
   isActive: boolean;
@@ -11,15 +11,8 @@ export const ContainerCard = styled.div<IActiveCard>`
   background: ${props => props.theme["base-card"]};
   border-radius: 0.375rem 2.25rem 0.375rem 2.25rem;
   padding: 0 1.25rem 1.25rem 1.25rem;
-
   transition: 0.5s;
 
-  ${props => props.isActive && css
-    `
-      box-shadow: 1px 2px 10px 1px ${props => props.theme.purple};
-      transition: 0.5s;
-    `
-  }
 `
 
 export const HeaderCard = styled.header`

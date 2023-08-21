@@ -5,7 +5,8 @@ import { addProductToCart, removeProductToCart } from "../reducer/products/actio
 interface ProductsContextType {
   products: IProduct[];
   countItens: number;
-  handleAddProductToCart: (data: IProduct, itemQuantity: number) => void;
+  // quant: number
+  handleAddProductToCart: (data: IProduct) => void;
   handleRemoveProductToCart: (id: number) => void
 }
 export const ProductsContext = createContext({} as ProductsContextType )
@@ -19,13 +20,13 @@ export function ProductsContextProvider({children}: ProductsContextProviderProps
   const [productState, dispatch] = useReducer(productsReducer, {
     products: [],
     countItens: 0,
-    quant: 0
+    // quant: 0
   })
 
   const {products, countItens} = productState
 
-  function handleAddProductToCart(data: IProduct, quant: number){
-    dispatch(addProductToCart(data, quant))
+  function handleAddProductToCart(data: IProduct){
+    dispatch(addProductToCart(data))
   }
 
   function handleRemoveProductToCart(id: number){
@@ -33,7 +34,7 @@ export function ProductsContextProvider({children}: ProductsContextProviderProps
   }
   return(
     <ProductsContext.Provider
-      value={{products, countItens,  handleAddProductToCart, handleRemoveProductToCart}}
+      value={{products, countItens, handleAddProductToCart, handleRemoveProductToCart}}
     >
       {children}
     </ProductsContext.Provider>

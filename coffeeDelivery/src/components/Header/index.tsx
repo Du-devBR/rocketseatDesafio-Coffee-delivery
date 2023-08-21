@@ -22,7 +22,7 @@ export function Header(){
             <Count >
               <p>{countItens}</p>
             </Count>
-            <Cart color="yellow" />
+            <Cart color="yellow"/>
           </CartContaienr>
         </Link>
       </NavContainer>

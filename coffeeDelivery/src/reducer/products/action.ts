@@ -6,10 +6,10 @@ export enum ActionTypes {
 }
 
 
-export function addProductToCart(products: IProduct, quant: number){
+export function addProductToCart(products: IProduct){
   return{
     type: ActionTypes.ADD_PRODUCT_CART,
-    payload: {products, quant}
+    payload: products
   }
 }
 
