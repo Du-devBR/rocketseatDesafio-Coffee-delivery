@@ -1,14 +1,14 @@
 import { ReactNode, createContext, useReducer } from "react"
 import { IProduct, productsReducer } from "../reducer/products/reducer"
-import { addProductToCart, removeProductToCart, testeAction } from "../reducer/products/action"
+import { addProductToCart, addQuantityItems, removeProductToCart, removeQuantityItems } from "../reducer/products/action"
 
 interface ProductsContextType {
   products: IProduct[];
   countItens: number;
-  // quant: number
   handleAddProductToCart: (data: IProduct) => void;
   handleRemoveProductToCart: (id: number) => void
-  teste: (data: IProduct) => void
+  handleQuantityItemsRemove: (id: number) => void
+  handleQuantityItemsAdd: (id: number) => void
 }
 export const ProductsContext = createContext({} as ProductsContextType )
 
@@ -21,7 +21,6 @@ export function ProductsContextProvider({children}: ProductsContextProviderProps
   const [productState, dispatch] = useReducer(productsReducer, {
     products: [],
     countItens: 0,
-    // quant: 0
   })
 
   const {products, countItens} = productState
@@ -34,12 +33,16 @@ export function ProductsContextProvider({children}: ProductsContextProviderProps
     dispatch(removeProductToCart(id))
   }
 
-  function teste(teste: IProduct){
-    dispatch(testeAction(teste))
+  function handleQuantityItemsRemove(id: number){
+    dispatch(removeQuantityItems(id))
+  }
+
+  function handleQuantityItemsAdd(id: number){
+    dispatch(addQuantityItems(id))
   }
   return(
     <ProductsContext.Provider
-      value={{products, countItens, handleAddProductToCart, handleRemoveProductToCart, teste}}
+      value={{products, countItens, handleAddProductToCart, handleRemoveProductToCart, handleQuantityItemsRemove, handleQuantityItemsAdd}}
     >
       {children}
     </ProductsContext.Provider>

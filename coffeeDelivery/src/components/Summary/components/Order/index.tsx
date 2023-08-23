@@ -8,9 +8,11 @@ interface IOrder {
   price: number
   onQuant: number;
   onRemoveCart: () => void
+  onRemoveQuantItems: () => void
+  onAddQuantItems: () => void
 }
 
-export function Order({picture,name,onQuant,price, onRemoveCart}: IOrder){
+export function Order({picture,name,onQuant,price, onRemoveCart, onRemoveQuantItems, onAddQuantItems}: IOrder){
 
   const totalOrder = (price * onQuant).toFixed(2);
 
@@ -22,6 +24,8 @@ export function Order({picture,name,onQuant,price, onRemoveCart}: IOrder){
         <ActionOrder>
           <Counter
             onQuantItem={onQuant}
+            onRemoveQuantItems={onRemoveQuantItems}
+            onAddQuantItems={onAddQuantItems}
           />
           <button onClick={onRemoveCart}>Remover</button>
         </ActionOrder>

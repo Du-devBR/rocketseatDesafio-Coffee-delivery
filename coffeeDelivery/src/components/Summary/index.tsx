@@ -5,12 +5,26 @@ import { ProductsContext } from "../../context/ProductsContext";
 
 export function Summary(){
 
-  const {products, handleRemoveProductToCart} = useContext(ProductsContext)
+  const {products, handleRemoveProductToCart, handleQuantityItemsRemove, handleQuantityItemsAdd} = useContext(ProductsContext)
 
   function removeProductToCart(id: number | undefined){
 
     if(id !== undefined){
       handleRemoveProductToCart(id)
+    }
+  }
+
+  function removeQauntityItems(id: number | undefined){
+
+    if(id !== undefined){
+      handleQuantityItemsRemove(id)
+    }
+  }
+
+  function addQauntityItems(id: number | undefined){
+
+    if(id !== undefined){
+      handleQuantityItemsAdd(id)
     }
   }
 
@@ -26,6 +40,8 @@ export function Summary(){
             price={order.product.price}
             onQuant={order?.quant}
             onRemoveCart={() => removeProductToCart(order.product.id)}
+            onRemoveQuantItems = {() => removeQauntityItems(order.product.id)}
+            onAddQuantItems = {() => addQauntityItems(order.product.id)}
           />
         ))
       }

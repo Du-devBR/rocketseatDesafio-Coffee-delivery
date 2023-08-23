@@ -51,12 +51,40 @@ export function productsReducer(state: IProductstate, action: any){
       }
       return state;
 
-    case ActionTypes.TESTE:
-        return{
-          ...state,
-          products: [...state.products, action.payload],
-          countItens: state.countItens + action.payload.quant
+    case ActionTypes.REMOVE_QUANT_ITEM:
+
+      const updatedItemsProductsAdd = state.products.map(product => {
+        if (product.product.id === action.payload) {
+          const updatedQuant = product.quant - 1;
+          return {
+            ...product,
+            quant: updatedQuant >= 0 ? updatedQuant : 0,
+          };
         }
+        return product;
+      });
+    return {
+      ...state,
+      products: updatedItemsProductsAdd,
+      countItens: state.countItens - 1
+    }
+
+    case ActionTypes.ADD_QUANT_ITEM:
+      const updatedItemsProductsRemove = state.products.map(product => {
+        if (product.product.id === action.payload) {
+          const updatedQuant = product.quant + 1;
+          return {
+            ...product,
+            quant: updatedQuant >= 0 ? updatedQuant : 0,
+          };
+        }
+        return product;
+      });
+    return {
+      ...state,
+      products: updatedItemsProductsRemove,
+      countItens: state.countItens + 1
+    }
     default:
       return state
   }
