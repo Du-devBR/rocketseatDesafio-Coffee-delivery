@@ -1,10 +1,12 @@
-import { ReactNode, createContext, useReducer } from "react"
+import { ReactNode, createContext, useReducer, useState } from "react"
 import { IProduct, productsReducer } from "../reducer/products/reducer"
 import { addProductToCart, addQuantityItems, removeProductToCart, removeQuantityItems } from "../reducer/products/action"
 
 interface ProductsContextType {
   products: IProduct[];
   countItens: number;
+  somePriceOrders: number
+  handlePriceTotal: () => void
   handleAddProductToCart: (data: IProduct) => void;
   handleRemoveProductToCart: (id: number) => void
   handleQuantityItemsRemove: (id: number) => void
@@ -17,6 +19,8 @@ interface ProductsContextProviderProps {
 }
 
 export function ProductsContextProvider({children}: ProductsContextProviderProps){
+
+  const [somePriceOrders, setSomePriceOrders] = useState(0)
 
   const [productState, dispatch] = useReducer(productsReducer, {
     products: [],
@@ -40,9 +44,17 @@ export function ProductsContextProvider({children}: ProductsContextProviderProps
   function handleQuantityItemsAdd(id: number){
     dispatch(addQuantityItems(id))
   }
+
+  function handlePriceTotal() {
+    const priceTotal = products.reduce((total, product) => {
+      return total + product.quant * product.product.price
+    }, 0)
+
+    setSomePriceOrders(priceTotal)
+  }
   return(
     <ProductsContext.Provider
-      value={{products, countItens, handleAddProductToCart, handleRemoveProductToCart, handleQuantityItemsRemove, handleQuantityItemsAdd}}
+      value={{products, countItens, somePriceOrders, handlePriceTotal, handleAddProductToCart, handleRemoveProductToCart, handleQuantityItemsRemove, handleQuantityItemsAdd}}
     >
       {children}
     </ProductsContext.Provider>
