@@ -1,11 +1,14 @@
-import { useContext } from "react";
+import { useContext} from "react";
 import { Order } from "./components/Order";
 import { SummaryContainer } from "./style";
 import { ProductsContext } from "../../context/ProductsContext";
 
 export function Summary(){
 
-  const {products, handleRemoveProductToCart, handleQuantityItemsRemove, handleQuantityItemsAdd} = useContext(ProductsContext)
+  const {products, somePriceOrders, handleRemoveProductToCart, handleQuantityItemsRemove, handleQuantityItemsAdd} = useContext(ProductsContext)
+
+  const orderDelivery = 3.50
+  const totalPrice = (somePriceOrders + orderDelivery).toFixed(2)
 
   function removeProductToCart(id: number | undefined){
 
@@ -45,6 +48,21 @@ export function Summary(){
           />
         ))
       }
+      <div>
+        <div>
+          <span>Total de itens</span>
+          <span>{`R$ ${somePriceOrders.toFixed(2)}`}</span>
+        </div>
+        <div>
+          <span>Total de itens</span>
+          <span>{`R$ ${orderDelivery}`}</span>
+        </div>
+        <div>
+          <span>Total</span>
+          <span>{`R$ ${totalPrice}`}</span>
+        </div>
+        <button>Confirmar Pedido</button>
+      </div>
     </SummaryContainer>
   )
 }

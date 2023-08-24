@@ -1,5 +1,7 @@
+import { useContext, useEffect } from "react";
 import { Counter } from "../../../Counter";
 import { ActionOrder, InfoOrder, OrderContainer } from "./style";
+import { ProductsContext } from "../../../../context/ProductsContext";
 
 interface IOrder {
   id?: number;
@@ -12,9 +14,15 @@ interface IOrder {
   onAddQuantItems: () => void
 }
 
-export function Order({picture,name,onQuant,price, onRemoveCart, onRemoveQuantItems, onAddQuantItems}: IOrder){
+export function Order({picture, name, onQuant, price, onRemoveCart, onRemoveQuantItems, onAddQuantItems}: IOrder){
 
+  const {handlePriceTotal} = useContext(ProductsContext)
   const totalOrder = (price * onQuant).toFixed(2);
+
+  useEffect(() => {
+    handlePriceTotal()
+  }, [onQuant, handlePriceTotal])
+
 
   return(
     <OrderContainer>

@@ -1,12 +1,14 @@
 
+import { Forms } from "../../components/Forms"
 import { Summary } from "../../components/Summary"
+import { CheckoutContainer } from "./style"
 
 export function Checkout(){
 
   return(
-    <div>
-      <h1>checkout</h1>
+    <CheckoutContainer>
+      <Forms />
       <Summary />
-    </div>
+    </CheckoutContainer>
   )
 }

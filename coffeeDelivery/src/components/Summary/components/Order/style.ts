@@ -6,6 +6,7 @@ export const OrderContainer = styled.div`
   justify-content: space-between;
   gap: 1.25rem;
   padding-bottom: 1.5rem;
+  margin: 2.5rem 0 0 0;
   border-bottom: solid 1px ${props => props.theme["base-button"]};
 `
 
