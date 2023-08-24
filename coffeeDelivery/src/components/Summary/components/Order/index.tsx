@@ -1,7 +1,8 @@
 import { useContext, useEffect } from "react";
 import { Counter } from "../../../Counter";
-import { ActionOrder, InfoOrder, OrderContainer } from "./style";
+import { ActionOrder, ButtonSubmitOrder, InfoOrder, OrderContainer } from "./style";
 import { ProductsContext } from "../../../../context/ProductsContext";
+import { Trash } from "phosphor-react";
 
 interface IOrder {
   id?: number;
@@ -23,7 +24,6 @@ export function Order({picture, name, onQuant, price, onRemoveCart, onRemoveQuan
     handlePriceTotal()
   }, [onQuant, handlePriceTotal])
 
-
   return(
     <OrderContainer>
       <img src={picture} alt="" />
@@ -35,10 +35,15 @@ export function Order({picture, name, onQuant, price, onRemoveCart, onRemoveQuan
             onRemoveQuantItems={onRemoveQuantItems}
             onAddQuantItems={onAddQuantItems}
           />
-          <button onClick={onRemoveCart}>Remover</button>
+          <ButtonSubmitOrder
+            onClick={onRemoveCart}
+            >
+              <Trash className="trash" size={16} />
+              Remover
+          </ButtonSubmitOrder>
         </ActionOrder>
       </InfoOrder>
-      <span>{totalOrder}</span>
+      <span>{`R$${totalOrder}`}</span>
     </OrderContainer>
   )
 }
