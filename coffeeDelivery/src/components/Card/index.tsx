@@ -7,7 +7,7 @@ import { ProductsContext } from "../../context/ProductsContext";
 
 
 export function Card({id, picture, name, price, description, types}: IProducts){
-  const {handleAddProductToCart, handleRemoveProductToCart} = useContext(ProductsContext)
+  const {handleAddProductToCart, FormatPriceValue} = useContext(ProductsContext)
 
   const [quant, setQuant] = useState(1)
 
@@ -23,14 +23,6 @@ export function Card({id, picture, name, price, description, types}: IProducts){
     };
     handleAddProductToCart(productData)
     setQuant(1)
-  }
-
-  function removeProductToCart(id: number | undefined){
-
-    if(id !== undefined){
-      handleRemoveProductToCart(id)
-      console.log(id)
-    }
   }
 
   return(
@@ -54,7 +46,7 @@ export function Card({id, picture, name, price, description, types}: IProducts){
       <FooterCard>
         <ContainerPrice>
           <span>R$</span>
-          <span>{price.toFixed(2)}</span>
+          <span>{`${FormatPriceValue(price)}`}</span>
         </ContainerPrice>
         <Counter
           onQuantItem={quant}

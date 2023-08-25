@@ -40,9 +40,7 @@ export const ActionOrder = styled.div`
   gap: 0.5rem;
 `
 
-
-
-export const ButtonSubmitOrder = styled.button`
+export const ButtonRemoveOrder = styled.button`
   display: flex;
   align-items: center;
   cursor: pointer;

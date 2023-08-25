@@ -1,6 +1,6 @@
 import { useContext, useEffect } from "react";
 import { Counter } from "../../../Counter";
-import { ActionOrder, ButtonSubmitOrder, InfoOrder, OrderContainer } from "./style";
+import { ActionOrder, ButtonRemoveOrder, InfoOrder, OrderContainer } from "./style";
 import { ProductsContext } from "../../../../context/ProductsContext";
 import { Trash } from "phosphor-react";
 
@@ -17,8 +17,8 @@ interface IOrder {
 
 export function Order({picture, name, onQuant, price, onRemoveCart, onRemoveQuantItems, onAddQuantItems}: IOrder){
 
-  const {handlePriceTotal} = useContext(ProductsContext)
-  const totalOrder = (price * onQuant).toFixed(2);
+  const {handlePriceTotal, FormatPriceValue} = useContext(ProductsContext)
+  const totalOrder = (price * onQuant);
 
   useEffect(() => {
     handlePriceTotal()
@@ -35,15 +35,15 @@ export function Order({picture, name, onQuant, price, onRemoveCart, onRemoveQuan
             onRemoveQuantItems={onRemoveQuantItems}
             onAddQuantItems={onAddQuantItems}
           />
-          <ButtonSubmitOrder
+          <ButtonRemoveOrder
             onClick={onRemoveCart}
             >
               <Trash className="trash" size={16} />
               Remover
-          </ButtonSubmitOrder>
+          </ButtonRemoveOrder>
         </ActionOrder>
       </InfoOrder>
-      <span>{`R$${totalOrder}`}</span>
+      <span>{`R$${FormatPriceValue(totalOrder)}`}</span>
     </OrderContainer>
   )
 }

@@ -1,14 +1,14 @@
 import { useContext} from "react";
 import { Order } from "./components/Order";
-import { SummaryContainer } from "./style";
+import { ButtonSubmitOrder, OrderDelivery, PriceOrderConatiner, SummaryContainer, TotalItems, TotalOrder } from "./style";
 import { ProductsContext } from "../../context/ProductsContext";
 
 export function Summary(){
 
-  const {products, somePriceOrders, handleRemoveProductToCart, handleQuantityItemsRemove, handleQuantityItemsAdd} = useContext(ProductsContext)
+  const {products, somePriceOrders, handleRemoveProductToCart, handleQuantityItemsRemove, handleQuantityItemsAdd, FormatPriceValue} = useContext(ProductsContext)
 
   const orderDelivery = 3.50
-  const totalPrice = (somePriceOrders + orderDelivery).toFixed(2)
+  const totalPrice = (somePriceOrders + orderDelivery)
 
   function removeProductToCart(id: number | undefined){
 
@@ -31,6 +31,7 @@ export function Summary(){
     }
   }
 
+
   return(
     <SummaryContainer>
       {
@@ -48,21 +49,23 @@ export function Summary(){
           />
         ))
       }
-      <div>
-        <div>
+      <PriceOrderConatiner>
+        <TotalItems>
           <span>Total de itens</span>
-          <span>{`R$ ${somePriceOrders.toFixed(2)}`}</span>
-        </div>
-        <div>
-          <span>Total de itens</span>
-          <span>{`R$ ${orderDelivery}`}</span>
-        </div>
-        <div>
+          <span>{`R$ ${FormatPriceValue(somePriceOrders)}`}</span>
+        </TotalItems>
+        <OrderDelivery>
+          <span>Entrega</span>
+          <span>{`R$ ${FormatPriceValue(orderDelivery)}`}</span>
+        </OrderDelivery>
+        <TotalOrder>
           <span>Total</span>
-          <span>{`R$ ${totalPrice}`}</span>
-        </div>
-        <button>Confirmar Pedido</button>
-      </div>
+          <span>{`R$ ${FormatPriceValue(totalPrice)}`}</span>
+        </TotalOrder>
+        <ButtonSubmitOrder>
+          Confirmar Pedido
+        </ButtonSubmitOrder>
+      </PriceOrderConatiner>
     </SummaryContainer>
   )
 }

@@ -11,6 +11,7 @@ interface ProductsContextType {
   handleRemoveProductToCart: (id: number) => void
   handleQuantityItemsRemove: (id: number) => void
   handleQuantityItemsAdd: (id: number) => void
+  FormatPriceValue: (price: number) => void
 }
 export const ProductsContext = createContext({} as ProductsContextType )
 
@@ -52,9 +53,19 @@ export function ProductsContextProvider({children}: ProductsContextProviderProps
 
     setSomePriceOrders(priceTotal)
   }
+
+  function FormatPriceValue(price: number){
+    const priceToFormat = price;
+    const priceFormatter = new Intl.NumberFormat('pt-BR', {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    })
+
+    return priceFormatter.format(priceToFormat)
+  }
   return(
     <ProductsContext.Provider
-      value={{products, countItens, somePriceOrders, handlePriceTotal, handleAddProductToCart, handleRemoveProductToCart, handleQuantityItemsRemove, handleQuantityItemsAdd}}
+      value={{products, countItens, somePriceOrders, handlePriceTotal, handleAddProductToCart, handleRemoveProductToCart, handleQuantityItemsRemove, handleQuantityItemsAdd, FormatPriceValue}}
     >
       {children}
     </ProductsContext.Provider>
