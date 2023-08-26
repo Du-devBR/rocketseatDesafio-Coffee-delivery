@@ -4,7 +4,41 @@ export const ContainerAddress = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
+  gap: 2rem;
   padding: 2.5rem;
+  background: ${props => props.theme["base-card"]};
+  border-radius: 0.375rem;
+  margin-bottom: 0.75rem;
+`
+
+export const HeaderContainer = styled.header`
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+
+`
+
+export const IconLocation = styled.span`
+  color: ${props => props.theme["yellow-dark"]};
+`
+
+export const SubtitleContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  strong {
+    line-height: 130%;
+    font-weight: 400;
+    font-size: ${props => props.theme.font_roboto["Text M"]};
+    color: ${props => props.theme["base-subtitle"]};
+  }
+
+  p {
+    line-height: 130%;
+    font-weight: 400;
+    font-size: ${props => props.theme.font_roboto["Text S"]};
+    color: ${props => props.theme["base-text"]};
+  }
 `
 
 export const FormContainer = styled.div`
@@ -41,7 +75,6 @@ export const Number = styled.div`
 export const ContainerComplementAddress = styled.div`
   width: 100%;
   display: flex;
-  /* justify-content: space-between; */
   gap: 1rem;
 `
 
@@ -50,11 +83,11 @@ export const Region = styled.div`
 `
 
 export const City = styled.div`
-  width: calc(50% - 1rem);
+  width: calc(45% - 1rem);
 `
 
 export const StateCode = styled.div`
-  width: 10%;
+  width: 15%;
 `
 
 export const StyledInput = styled.input`

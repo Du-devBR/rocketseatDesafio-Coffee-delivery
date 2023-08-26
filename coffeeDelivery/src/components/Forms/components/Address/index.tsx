@@ -1,16 +1,18 @@
 import { MapPinLine } from "phosphor-react";
-import { ContainerAddress, ContainerComplement, Street, ZipCode, FormContainer, StyledInput, Number, Complement, ContainerComplementAddress, Region, City, StateCode } from "./style";
+import { ContainerAddress, ContainerComplement, Street, ZipCode, FormContainer, StyledInput, Number, Complement, ContainerComplementAddress, Region, City, StateCode, HeaderContainer, SubtitleContainer, IconLocation } from "./style";
 
 export function Address(){
   return(
     <ContainerAddress>
-      <header>
-        <MapPinLine  />
-        <div>
+      <HeaderContainer>
+        <IconLocation>
+          <MapPinLine size={22} />
+        </IconLocation>
+        <SubtitleContainer>
           <strong>Endereço de Entrega</strong>
           <p>Informe o endereço onde deseja receber seu pedido</p>
-        </div>
-      </header>
+        </SubtitleContainer>
+      </HeaderContainer>
       <FormContainer>
         <ZipCode>
           <StyledInput type="text" placeholder="Cep" />
