@@ -2,16 +2,24 @@ import { CurrencyDollar } from "phosphor-react";
 import { IconDolar, PaymentContainer, PaymentForm, PaymentHeader, SelectPayment, SubtitleContainer } from "./style";
 import { useState } from "react";
 
-export function Payment(){
+export interface IDataUser {
+  payment: string;
+}
+interface IAddressProps {
+  dataPaymentSelect: (paymentMethod: string) => void
+}
+
+export function Payment({dataPaymentSelect}: IAddressProps){
 
   const [teste, setTeste] = useState(null)
 
   function handleTeste(event) {
 
+    dataPaymentSelect(event.target.value)
     setTeste(event.target.value)
   }
 
-  console.log(teste)
+
   return(
     <PaymentContainer>
       <PaymentHeader>
