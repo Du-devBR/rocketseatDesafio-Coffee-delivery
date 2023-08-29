@@ -13,10 +13,11 @@ export const ContainerCounter = styled.div`
     border: none;
     cursor: pointer;
     transition: 0.5s;
+    padding: 0.5rem 0;
 
     &:hover {
-      box-shadow: 1px 2px 10px 1px ${props => props.theme.purple};
       transition: 0.5s;
+      transform: scale(1.2);
     }
 
 

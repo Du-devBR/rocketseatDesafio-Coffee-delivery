@@ -8,7 +8,7 @@ import { useContext } from "react";
 
 export function Header(){
 
-  const {countItens} = useContext(ProductsContext)
+  const {countItens, products} = useContext(ProductsContext)
   return(
     <HeaderContainer>
       <Link to={"/"}>
@@ -17,14 +17,24 @@ export function Header(){
 
       <NavContainer>
         <Location />
-        <Link to={"/checkout"}>
+        {
+          products.length >= 1 ?(
+            <Link to={"/checkout"}>
+              <CartContaienr>
+                <Count >
+                  <p>{countItens}</p>
+                </Count>
+                <Cart color="yellow"/>
+              </CartContaienr>
+            </Link>
+          ):
           <CartContaienr>
             <Count >
               <p>{countItens}</p>
             </Count>
             <Cart color="yellow"/>
           </CartContaienr>
-        </Link>
+        }
       </NavContainer>
     </HeaderContainer>
   )
