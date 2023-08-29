@@ -11,12 +11,12 @@ interface IAddressProps {
 
 export function Payment({dataPaymentSelect}: IAddressProps){
 
-  const [teste, setTeste] = useState(null)
+  const [dataForPayment, setDataForPayment] = useState(null)
 
-  function handleTeste(event) {
+  function handleTeste(event: React.ChangeEvent<HTMLInputElement>) {
 
     dataPaymentSelect(event.target.value)
-    setTeste(event.target.value)
+    setDataForPayment(event.target.value)
   }
 
 
@@ -32,16 +32,16 @@ export function Payment({dataPaymentSelect}: IAddressProps){
         </SubtitleContainer>
       </PaymentHeader>
       <PaymentForm>
-        <SelectPayment htmlFor="1" className={teste === 'creditCard' ? 'selected' : ''}>
-          <input type="radio" value={"creditCard"} id="1" onChange={handleTeste} checked={teste === 'creditCard'} />
+        <SelectPayment htmlFor="1" className={dataForPayment === 'creditCard' ? 'selected' : ''}>
+          <input type="radio" value={"creditCard"} id="1" onChange={handleTeste} checked={dataForPayment === 'creditCard'} />
           Cartão de credito
         </SelectPayment>
-        <SelectPayment htmlFor="2" className={teste === 'debitCard' ? 'selected' : ''}>
-          <input type="radio" value={"debitCard"} id="2" onChange={handleTeste} checked={teste === 'debitCard'} />
+        <SelectPayment htmlFor="2" className={dataForPayment === 'debitCard' ? 'selected' : ''}>
+          <input type="radio" value={"debitCard"} id="2" onChange={handleTeste} checked={dataForPayment === 'debitCard'} />
           Cartão de Debito
         </SelectPayment>
-        <SelectPayment htmlFor="3" className={teste === 'money' ? 'selected' : ''}>
-          <input type="radio" value={"money"} id="3" onChange={handleTeste} checked={teste === 'money'} />
+        <SelectPayment htmlFor="3" className={dataForPayment === 'money' ? 'selected' : ''}>
+          <input type="radio" value={"money"} id="3" onChange={handleTeste} checked={dataForPayment === 'money'} />
           Dinheiro
         </SelectPayment>
       </PaymentForm>

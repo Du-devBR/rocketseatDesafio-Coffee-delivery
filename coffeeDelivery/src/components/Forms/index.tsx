@@ -1,41 +1,20 @@
-import { useState } from "react";
+
 import { Address, IDataUser } from "./components/Address";
 import { Payment } from "./components/Payment";
 import { FormsContainer } from "./style";
 
-interface IDataPayment extends IDataUser {
-  payment: string
+
+interface IPropsData {
+  onHandleDataAddress: (dataAddress: IDataUser) => void
+  onHandleDataPayment: (paymentMethod: string) => void
 }
 
-export function Forms(){
-
-  const [dataPayment, setDataPayment] = useState<IDataPayment>({
-    id: '',
-    zipCode: '',
-    street: '',
-    number: '',
-    complement: '',
-    region: '',
-    city: '',
-    state: '',
-    payment: '',
-  });
-
-  console.log(dataPayment)
-
-
-  function handleDataAddress(dataAddress: IDataUser){
-    setDataPayment((prevData) => ({ ...prevData, ...dataAddress }));
-  }
-
-  function handleDataPayment(paymentMethod: string){
-    setDataPayment((prevData) => ({ ...prevData, payment: paymentMethod }));
-  }
+export function Forms({onHandleDataAddress, onHandleDataPayment} : IPropsData){
 
   return(
     <FormsContainer>
-      <Address dataAddress={handleDataAddress}/>
-      <Payment dataPaymentSelect={handleDataPayment}/>
+      <Address dataAddress={onHandleDataAddress}/>
+      <Payment dataPaymentSelect={onHandleDataPayment}/>
     </FormsContainer>
   )
 }

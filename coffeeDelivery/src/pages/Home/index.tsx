@@ -7,7 +7,6 @@ import { ContainerHome, ContainerProducts } from "./style"
 export function Home(){
   const {products} = useContext(ProductsContext)
 
-  console.log(products)
   return(
     <ContainerHome>
       <h1>Nossos cafés</h1>

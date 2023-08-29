@@ -3,7 +3,11 @@ import { Order } from "./components/Order";
 import { ButtonSubmitOrder, OrderDelivery, PriceOrderConatiner, SummaryContainer, TotalItems, TotalOrder } from "./style";
 import { ProductsContext } from "../../context/ProductsContext";
 
-export function Summary(){
+interface IPropsSummary {
+  onDispatch: () => void
+}
+
+export function Summary({onDispatch} : IPropsSummary){
 
   const {products, somePriceOrders, handleRemoveProductToCart, handleQuantityItemsRemove, handleQuantityItemsAdd, FormatPriceValue} = useContext(ProductsContext)
 
@@ -30,7 +34,6 @@ export function Summary(){
       handleQuantityItemsAdd(id)
     }
   }
-
 
   return(
     <SummaryContainer>
@@ -62,7 +65,7 @@ export function Summary(){
           <span>Total</span>
           <span>{`R$ ${FormatPriceValue(totalPrice)}`}</span>
         </TotalOrder>
-        <ButtonSubmitOrder>
+        <ButtonSubmitOrder onClick={onDispatch}>
           Confirmar Pedido
         </ButtonSubmitOrder>
       </PriceOrderConatiner>

@@ -63,6 +63,7 @@ export function ProductsContextProvider({children}: ProductsContextProviderProps
 
     return priceFormatter.format(priceToFormat)
   }
+
   return(
     <ProductsContext.Provider
       value={{products, countItens, somePriceOrders, handlePriceTotal, handleAddProductToCart, handleRemoveProductToCart, handleQuantityItemsRemove, handleQuantityItemsAdd, FormatPriceValue}}
