@@ -11,6 +11,10 @@ export const GlobalStyle = createGlobalStyle`
   }
 
 
+  body {
+    max-width: 1440px;
+    margin: 0 auto;
+  }
 
   h1, h2, h3, h4 {
     font-family: 'Baloo 2', cursive;

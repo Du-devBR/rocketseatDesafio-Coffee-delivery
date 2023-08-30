@@ -18,6 +18,7 @@ export const defaultThemes = {
     'base-label': '#8D8686',
     'base-text': '#574F4D',
     'base-subtitle':'#403937',
+    'base-title':'#272221',
 
 
   font_roboto: {
