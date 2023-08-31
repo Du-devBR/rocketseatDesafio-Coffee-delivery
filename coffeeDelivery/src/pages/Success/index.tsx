@@ -1,8 +1,21 @@
 import { CurrencyDollar, MapPin, Timer } from "phosphor-react";
 import { ContainerInfoSuccess, ContainerSuccess, IconStyle, ImageSuccess, Info, InfoAddress, InfoSuccess } from "./style";
 import imageDelivery from '../../assets/img/imageDelivery.png'
+import { useEffect, useState } from "react";
+import { IDataPayment } from "../Checkout";
 
 export function Success(){
+
+  const [dataOrder, setDataOrder] = useState<IDataPayment>()
+
+  useEffect(() => {
+    const localStorageOrder = localStorage.getItem('order')
+    if(localStorageOrder){
+      const parsedOrder = JSON.parse(localStorageOrder)
+      setDataOrder(parsedOrder)
+    }
+  }, [])
+
   return(
     <ContainerSuccess>
       <ContainerInfoSuccess>
@@ -14,8 +27,8 @@ export function Success(){
               <MapPin size={16} weight="fill" />
             </IconStyle>
             <InfoAddress>
-              <span>Entrega em <strong>Rua João Daniel Martinelli</strong>
-                , 102 Farrapos - Porto Alegre, RS
+              <span>Entrega em <strong>{dataOrder?.street}</strong>
+                , {dataOrder?.number} {dataOrder?.region} - {dataOrder?.city}, {dataOrder?.state}
               </span>
             </InfoAddress>
           </Info>
@@ -34,7 +47,7 @@ export function Success(){
             </IconStyle>
             <InfoAddress>
               <span>Pagamento na entrega</span>
-              <strong>Cartão de Crédito</strong>
+              <strong>{dataOrder?.payment}</strong>
             </InfoAddress>
           </Info>
         </InfoSuccess>

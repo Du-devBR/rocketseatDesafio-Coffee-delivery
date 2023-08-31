@@ -1,4 +1,5 @@
-import { IDataPayment } from "../../components/Forms";
+
+import { IDataPayment } from "../../pages/Checkout";
 import { ActionTypes } from "./action";
 
 
