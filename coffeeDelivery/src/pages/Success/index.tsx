@@ -1,5 +1,5 @@
 import { CurrencyDollar, MapPin, Timer } from "phosphor-react";
-import { ContainerInfoSuccess, ContainerSuccess, Info, InfoSuccess } from "./style";
+import { ContainerInfoSuccess, ContainerSuccess, IconStyle, ImageSuccess, Info, InfoAddress, InfoSuccess } from "./style";
 import imageDelivery from '../../assets/img/imageDelivery.png'
 
 export function Success(){
@@ -10,37 +10,38 @@ export function Success(){
         <p>Agora é só aguardar que logo o café chegará até você</p>
         <InfoSuccess>
           <Info>
-            <span>
+            <IconStyle iconTheme="location">
               <MapPin size={16} weight="fill" />
-            </span>
-            <div>
-              <span>Entrega em Rua João Daniel Martinelli, 102</span>
-              <span>Farrapos - Porto Alegre, RS</span>
-            </div>
+            </IconStyle>
+            <InfoAddress>
+              <span>Entrega em <strong>Rua João Daniel Martinelli</strong>
+                , 102 Farrapos - Porto Alegre, RS
+              </span>
+            </InfoAddress>
           </Info>
           <Info>
-            <span>
+            <IconStyle iconTheme="timer">
               <Timer size={16} weight="fill" />
-            </span>
-            <div>
+            </IconStyle>
+            <InfoAddress>
               <span>Previsão de entrega</span>
-              <span>20 min - 30 min </span>
-            </div>
+              <strong>20 min - 30 min </strong>
+            </InfoAddress>
           </Info>
           <Info>
-            <span>
+            <IconStyle iconTheme="dollar">
               <CurrencyDollar size={16} weight="fill" />
-            </span>
-            <div>
+            </IconStyle>
+            <InfoAddress>
               <span>Pagamento na entrega</span>
-              <span>Cartão de Crédito</span>
-            </div>
+              <strong>Cartão de Crédito</strong>
+            </InfoAddress>
           </Info>
         </InfoSuccess>
       </ContainerInfoSuccess>
-      <div>
+      <ImageSuccess>
         <img src={imageDelivery} alt="" />
-      </div>
+      </ImageSuccess>
     </ContainerSuccess>
   )
 }
