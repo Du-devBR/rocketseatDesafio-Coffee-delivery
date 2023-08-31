@@ -1,4 +1,5 @@
-import { IDataPayment } from "../../components/Forms";
+import { IDataPayment } from "../../pages/Checkout";
+
 
 export enum ActionTypes {
   SUBMIT_ORDER = 'SUBMIT_ORDER',

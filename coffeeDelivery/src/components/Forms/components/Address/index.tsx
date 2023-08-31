@@ -1,8 +1,6 @@
 import { MapPinLine } from "phosphor-react";
 import { ContainerAddress, ContainerComplement, Street, ZipCode, FormContainer, StyledInput, Number, Complement, ContainerComplementAddress, Region, City, StateCode, HeaderContainer, SubtitleContainer, IconLocation } from "./style";
-import { useState } from "react";
-
-
+import { useEffect, useState } from "react";
 
 export interface IDataUser {
   id: string;
@@ -15,10 +13,13 @@ export interface IDataUser {
   state: string;
 }
 interface IAddressProps {
+  onResetForm: {}
   dataAddress: (data: IDataUser) => void
 }
 
-export function Address({dataAddress}: IAddressProps){
+export function Address({dataAddress, onResetForm}: IAddressProps){
+
+  const [errorCep, setErrorCep] = useState(false)
 
   const [dataPaymentAddress, setDataPaymentAddress] = useState<IDataUser>({
     id: String(new Date().getTime()),
@@ -31,12 +32,47 @@ export function Address({dataAddress}: IAddressProps){
     state: '',
   })
 
+  useEffect(() => {
+    setDataPaymentAddress({
+      ...dataPaymentAddress,
+      zipCode: '',
+      street: '',
+      number: '',
+      complement: '',
+      region: '',
+      city: '',
+      state: '',
+      })
+
+  }, [onResetForm])
+
   function handleAddressChange(event: React.ChangeEvent<HTMLInputElement>, field: keyof IDataUser){
     const { value } = event.target;
     const updatedAddress = { ...dataPaymentAddress, [field]: value };
-    setDataPaymentAddress(updatedAddress); // Atualiza o estado local
+    setDataPaymentAddress(updatedAddress)
 
     dataAddress(updatedAddress);
+  }
+
+  async function handleApiCep(cep: string){
+    const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`)
+    const data = await response.json()
+
+    if(!data.erro){
+      setDataPaymentAddress({
+       ...dataPaymentAddress,
+       street: data.logradouro,
+       region: data.bairro,
+       state: data.uf,
+       city: data.localidade,
+      })
+    }else{
+      setErrorCep(true)
+    }
+  }
+
+  function formatCep(cep: string){
+    return cep.replace(/^(\d{5})(\d{3})$/, "$1-$2")
   }
 
   return(
@@ -55,9 +91,18 @@ export function Address({dataAddress}: IAddressProps){
           <StyledInput
             type="text"
             placeholder="Cep"
-            value={dataPaymentAddress.zipCode}
+            maxLength={8}
+            value={formatCep(dataPaymentAddress.zipCode)}
             onChange={(event) => handleAddressChange(event, "zipCode")}
+            onBlur={(event) => dataPaymentAddress.zipCode.length >= 8 ? handleApiCep((event.target as HTMLInputElement).value) : ''}
+            onFocus={() => setErrorCep(false)}
+            className={errorCep ? 'error' : ''}
           />
+          {
+            errorCep ? (
+              <span>Cep não encontrado</span>
+            ): ''
+          }
         </ZipCode>
         <Street>
           <StyledInput
@@ -106,6 +151,7 @@ export function Address({dataAddress}: IAddressProps){
             <StyledInput
               type="text"
               placeholder="Uf"
+              maxLength={2}
               value={dataPaymentAddress.state}
               onChange={(event) => handleAddressChange(event, "state")}
             />

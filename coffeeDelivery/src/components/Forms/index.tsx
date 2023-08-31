@@ -5,15 +5,19 @@ import { FormsContainer } from "./style";
 
 
 interface IPropsData {
+  onResetForm: {}
   onHandleDataAddress: (dataAddress: IDataUser) => void
   onHandleDataPayment: (paymentMethod: string) => void
 }
 
-export function Forms({onHandleDataAddress, onHandleDataPayment} : IPropsData){
+export function Forms({onHandleDataAddress, onHandleDataPayment, onResetForm} : IPropsData){
 
   return(
     <FormsContainer>
-      <Address dataAddress={onHandleDataAddress}/>
+      <Address
+        dataAddress={onHandleDataAddress}
+        onResetForm={onResetForm}
+      />
       <Payment dataPaymentSelect={onHandleDataPayment}/>
     </FormsContainer>
   )

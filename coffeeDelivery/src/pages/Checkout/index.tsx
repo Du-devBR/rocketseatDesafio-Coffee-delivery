@@ -17,7 +17,6 @@ export interface IDataPayment extends IDataUser {
 export function Checkout(){
 
   const {products} = useContext(ProductsContext)
-
   const [orderState, dispatch] = useReducer(orderReducer, {
     user: {
       id: '',
@@ -48,30 +47,39 @@ export function Checkout(){
     products: []
   });
 
+  const [resetForm, setResetForm] = useState(false);
+
   useEffect(() => {
-    setDataPayment({ ...dataPayment, products: products })
+    setDataPayment({ ...dataPayment, products: products})
   }, [products])
 
   function submitOrderUser(){
-    dispatch(submitOrderProducts(dataPayment))
+    const isFildEmpty = Object.values(dataPayment).some(value => value === '')
+    if(!isFildEmpty){
+      dispatch(submitOrderProducts(dataPayment))
+      setResetForm(true)
+    }else {
+      alert('campos vazio')
+    }
   }
 
   function handleDataAddress(dataAddress: IDataUser){
     setDataPayment((prevData) => ({ ...prevData, ...dataAddress }));
+    setResetForm(false)
   }
 
   function handleDataPayment(paymentMethod: string){
     setDataPayment((prevData) => ({ ...prevData, payment: paymentMethod }));
   }
 
-
   return(
     <CheckoutContainer>
       <Forms
         onHandleDataAddress={handleDataAddress}
         onHandleDataPayment={handleDataPayment}
+        onResetForm={resetForm}
       />
-      <Summary onDispatch={submitOrderUser} />
+      <Summary onDispatch={submitOrderUser}/>
     </CheckoutContainer>
   )
 }

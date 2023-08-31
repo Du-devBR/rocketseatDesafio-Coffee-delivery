@@ -20,6 +20,10 @@ export const defaultThemes = {
     'base-subtitle':'#403937',
     'base-title':'#272221',
 
+    'error-border': "#F38989",
+    'error-background': "#EBCECE",
+
+
 
   font_roboto: {
     'Text L': '1.25rem',

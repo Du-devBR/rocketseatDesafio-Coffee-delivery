@@ -51,6 +51,14 @@ export const FormContainer = styled.div`
 
 export const ZipCode = styled.div`
   max-width: 40%;
+  gap: 1rem;
+
+  span {
+    margin-top: 0.5rem;
+    font-size: ${props => props.theme.font_roboto["Text S"]};
+    color: ${props => props.theme["error-border"]};
+  }
+
 `
 
 export const Street = styled.div`
@@ -93,7 +101,6 @@ export const StateCode = styled.div`
 export const StyledInput = styled.input`
   width: 100%;
   padding: 0.75rem;
-  border: none;
   border-radius: 0.25rem;
   font-weight: 400;
   font-size: ${props => props.theme.font_roboto["Text S"]};
@@ -110,5 +117,10 @@ export const StyledInput = styled.input`
   &:focus{
     border: 1px solid ${props => props.theme.yellow};
     transition: 0.5s;
+  }
+
+  &.error {
+    border: 1px solid ${props => props.theme["error-border"]};
+    background: ${props => props.theme["error-background"]};
   }
 `
