@@ -13,7 +13,7 @@ export function Payment({dataPaymentSelect}: IAddressProps){
 
   const [dataForPayment, setDataForPayment] = useState(null)
 
-  function handleTeste(event: React.ChangeEvent<HTMLInputElement>) {
+  function handleTeste(event: any) {
 
     dataPaymentSelect(event.target.value)
     setDataForPayment(event.target.value)
