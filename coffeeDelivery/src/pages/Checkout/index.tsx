@@ -37,7 +37,8 @@ export function Checkout(){
     },
   });
 
-  // const {user} = orderState
+  const {} = orderState
+  // console.log(user)
 
   const [dataPayment, setDataPayment] = useState<IDataPayment>({
     id: '',
