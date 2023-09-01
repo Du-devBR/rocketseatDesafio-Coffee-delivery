@@ -4,6 +4,8 @@ import { Cart } from "../Cart";
 import { Counter } from "../Counter";
 import { ContainerCard, ContainerPrice, FooterCard, HeaderCard, MainCard, TagName, TagsProduct } from "./style";
 import { ProductsContext } from "../../context/ProductsContext";
+import {ToastContainer, toast} from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
 
 
 export function Card({id, picture, name, price, description, types}: IProducts){
@@ -23,10 +25,12 @@ export function Card({id, picture, name, price, description, types}: IProducts){
     };
     handleAddProductToCart(productData)
     setQuant(1)
+    toast.success("Produto adicionado ao carrinho")
   }
 
   return(
     <ContainerCard isActive={quant > 1}>
+      <ToastContainer autoClose={500} />
       <HeaderCard>
         <img src={picture} alt="" />
         <TagsProduct>

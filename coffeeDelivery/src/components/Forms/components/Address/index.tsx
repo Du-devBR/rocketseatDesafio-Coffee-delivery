@@ -20,7 +20,6 @@ interface IAddressProps {
 export function Address({dataAddress, onResetForm}: IAddressProps){
 
   const [errorCep, setErrorCep] = useState(false)
-
   const [dataPaymentAddress, setDataPaymentAddress] = useState<IDataUser>({
     id: String(new Date().getTime()),
     zipCode: '',
@@ -50,7 +49,6 @@ export function Address({dataAddress, onResetForm}: IAddressProps){
     const { value } = event.target;
     const updatedAddress = { ...dataPaymentAddress, [field]: value };
     setDataPaymentAddress(updatedAddress)
-
     dataAddress(updatedAddress);
   }
 
@@ -97,6 +95,8 @@ export function Address({dataAddress, onResetForm}: IAddressProps){
             onBlur={(event) => dataPaymentAddress.zipCode.length >= 8 ? handleApiCep((event.target as HTMLInputElement).value) : ''}
             onFocus={() => setErrorCep(false)}
             className={errorCep ? 'error' : ''}
+            minLength={8}
+            required
           />
           {
             errorCep ? (

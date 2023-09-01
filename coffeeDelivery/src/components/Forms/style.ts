@@ -1,5 +1,5 @@
 import { styled } from "styled-components";
 
-export const FormsContainer = styled.div`
+export const FormsContainer = styled.form`
   width: 100%;
 `

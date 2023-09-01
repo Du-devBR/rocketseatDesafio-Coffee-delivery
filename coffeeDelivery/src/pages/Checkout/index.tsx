@@ -8,6 +8,9 @@ import { submitOrderProducts } from "../../reducer/order/action";
 import { ProductsContext } from "../../context/ProductsContext";
 import { IDataUser } from "../../components/Forms/components/Address";
 import { IProduct } from "../../reducer/products/reducer";
+import {ToastContainer, toast} from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from "react-router-dom";
 
 export interface IDataPayment extends IDataUser {
   payment: string;
@@ -15,6 +18,8 @@ export interface IDataPayment extends IDataUser {
 }
 
 export function Checkout(){
+
+  const navigate = useNavigate()
 
   const {products} = useContext(ProductsContext)
   const [orderState, dispatch] = useReducer(orderReducer, {
@@ -54,12 +59,18 @@ export function Checkout(){
   }, [products])
 
   function submitOrderUser(){
-    const isFildEmpty = Object.values(dataPayment).some(value => value === '')
+    const { complement, ...fieldsWithoutComplement } = dataPayment;
+    const isFildEmpty = Object.values(fieldsWithoutComplement).some(value => value === '')
     if(!isFildEmpty){
       dispatch(submitOrderProducts(dataPayment))
       setResetForm(true)
+      toast.success("Compra efetuada com sucesso.")
+
+      setTimeout(() => {
+        navigate("/success")
+      }, 1500);
     }else {
-      alert('campos vazio')
+      toast.error("Por favor preencha todos os campos")
     }
   }
 
@@ -74,6 +85,7 @@ export function Checkout(){
 
   return(
     <CheckoutContainer>
+      <ToastContainer autoClose={500} />
       <Forms
         onHandleDataAddress={handleDataAddress}
         onHandleDataPayment={handleDataPayment}
