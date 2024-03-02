@@ -24,6 +24,7 @@ export const ContainerBanner = styled.section`
 
   @media (max-width: 768px){
     flex-direction: column;
+    padding: 2rem 0;
   }
 
 `
