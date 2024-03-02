@@ -4,6 +4,14 @@ export const HeaderContainer = styled.header`
   display: flex;
   justify-content: space-between;
   padding: 2rem 10rem;
+
+  @media (max-width: 1280px){
+    padding: 2rem 4rem;
+  }
+
+  @media (max-width: 480px){
+    padding:  2rem;
+  }
 `
 
 export const NavContainer = styled.nav`

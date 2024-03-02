@@ -4,18 +4,33 @@ export const ContainerHome = styled.section`
   padding: 0 10rem;
   display: flex;
   flex-direction: column;
+
+  @media (max-width: 1280px){
+    padding: 0 4rem;
+  }
+
+  @media (max-width: 480px){
+    padding: 0 2rem;
+  }
 `
 
 export const ContainerBanner = styled.section`
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
   gap: 3.5rem;
   padding: 5.875rem 0;
+
+
+  @media (max-width: 768px){
+    flex-direction: column;
+  }
+
 `
 
 export const ContainerInfoBanner = styled.div`
   display: flex;
-  width: 100%;
+  flex: 1;
   flex-direction: column;
 
   h1 {
@@ -31,6 +46,12 @@ export const ContainerInfoBanner = styled.div`
     line-height: 130%;
     font-size: ${props => props.theme.font_roboto["Text L"]};
     color: ${props => props.theme["base-subtitle"]};
+  }
+
+  @media (max-width: 768px){
+    h1 {
+      font-size: ${props => props.theme.font_baloo["Title L"]};
+    }
   }
 `
 
@@ -77,14 +98,21 @@ export const IconIntro = styled.span<IIconThemeProps>`
 
 export const ContainerImage = styled.div`
   display: flex;
-  width: 100%;
+  flex: 1;
+  justify-content: flex-end;
+
+  @media (max-width: 1280px){
+    justify-content: center;
+  }
 
   img {
-    max-width: 100%;
+
     height: auto;
-    object-fit: contain;
     align-self: flex-start;
 
+    @media (max-width: 768px){
+      max-width: 100%;
+    }
   }
 `
 
@@ -99,10 +127,17 @@ export const ContainerProducts = styled.section`
     font-size: ${props => props.theme.font_baloo["Title L"]};
     color: ${props => props.theme["base-subtitle"]};
   }
+
+  @media (max-width: 768px){
+    h2 {
+      font-size: ${props => props.theme.font_baloo["Title M"]};
+    }
+  }
 `
 
 export const ListProducts = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(256px, 1fr));
   gap: 2rem 1rem;
+
 `

@@ -5,13 +5,17 @@ interface IActiveCard {
 }
 
 export const ContainerCard = styled.div<IActiveCard>`
-  width: 256px;
+  min-width: 256px;
   display: flex;
   flex-direction: column;
   background: ${props => props.theme["base-card"]};
   border-radius: 0.375rem 2.25rem 0.375rem 2.25rem;
   padding: 0 1.25rem 1.25rem 1.25rem;
   transition: 0.5s;
+
+  @media (max-width: 480){
+    max-width: 256px;
+  }
 
 `
 
