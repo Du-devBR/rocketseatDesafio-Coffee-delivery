@@ -40,6 +40,10 @@ export const PaymentForm = styled.div`
   display: flex;
   justify-content: space-between;
   gap: 0.75rem;
+
+  @media (max-width: 480px){
+    flex-direction: column;
+  }
 `
 
 export const SelectPayment = styled.label`

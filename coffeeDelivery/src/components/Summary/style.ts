@@ -3,6 +3,7 @@ import { styled } from "styled-components";
 export const SummaryContainer = styled.div`
   display: flex;
   flex-direction: column;
+  flex: 1;
   width: 448px;
   height: 100%;
   padding: 2.5rem;

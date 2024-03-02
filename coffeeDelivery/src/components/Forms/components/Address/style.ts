@@ -15,7 +15,6 @@ export const HeaderContainer = styled.header`
   display: flex;
   align-items: flex-start;
   gap: 0.5rem;
-
 `
 
 export const IconLocation = styled.span`
@@ -84,18 +83,33 @@ export const ContainerComplementAddress = styled.div`
   width: 100%;
   display: flex;
   gap: 1rem;
+
+  @media (max-width: 480px){
+    flex-direction: column;
+  }
 `
 
 export const Region = styled.div`
   width: calc(40% + 1rem);
+
+  @media (max-width: 480px){
+    width: 100%;
+  }
 `
 
 export const City = styled.div`
   width: calc(45% - 1rem);
+  @media (max-width: 480px){
+    width: 100%;
+  }
 `
 
 export const StateCode = styled.div`
   width: 15%;
+  @media (max-width: 480px){
+    width: 30%;
+    align-self: flex-end;
+  }
 `
 
 export const StyledInput = styled.input`
