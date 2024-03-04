@@ -6,6 +6,15 @@ export const ContainerSuccess = styled.div`
   align-items: flex-end;
   justify-content: space-between;
   gap: 2rem;
+
+  @media (max-width: 1280px){
+    padding: 0rem 4rem;
+  }
+
+  @media (max-width: 480px){
+    padding:  2rem;
+  }
+
 `
 
 export const ContainerInfoSuccess = styled.div`
@@ -38,13 +47,14 @@ export const InfoSuccess = styled.ul`
   border: solid 1px ${props => props.theme["yellow-dark"]};
   border-radius: 0.375rem 2.25rem 0.375rem 2.25rem;
   margin-top: 2.5rem;
-`
 
+`
 
 export const Info = styled.li`
   display: flex;
   gap: 0.75rem;
   align-items: center;
+
 `
 
 const ICON_THEME = {
@@ -61,8 +71,7 @@ export const IconStyle = styled.span<IIconThemeProps>`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 2rem;
-  height: 2rem;
+  padding: 0.625rem;
   border-radius: 999px;
   color: ${props => props.theme.white};
   background: ${props => props.theme[ICON_THEME[props.iconTheme]]};
