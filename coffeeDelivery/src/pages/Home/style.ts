@@ -28,7 +28,6 @@ export const ContainerBanner = styled.section`
   }
 
 `
-
 export const ContainerInfoBanner = styled.div`
   display: flex;
   flex: 1;

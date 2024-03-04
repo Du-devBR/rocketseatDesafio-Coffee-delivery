@@ -7,13 +7,13 @@ export function Location() {
       <MapPinStyle>
         <MapPin size={22} weight="fill" />
       </MapPinStyle>
-      <input list="city" placeholder="Escolher região" />
-      <datalist id="city">
-        <option value="Porto Alegre, RS" />
-        <option value="São Paulo, SP" />
-        <option value="Rio de Janeiro, RJ" />
-        <option value="Belo Horizonte, MG" />
-      </datalist>
+      <select id="city">
+        <option>Escolher região</option>
+        <option value="">Porto Alegre, RS</option>
+        <option value="">São Paulo, SP</option>
+        <option value="">Rio de Janeiro, RJ</option>
+        <option value="">Belo Horizonte, MG</option>
+      </select>
     </ContainerLocation>
   );
 }

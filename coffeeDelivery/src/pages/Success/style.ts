@@ -6,9 +6,15 @@ export const ContainerSuccess = styled.div`
   align-items: flex-end;
   justify-content: space-between;
   gap: 2rem;
+  flex-wrap: wrap;
 
   @media (max-width: 1280px){
     padding: 0rem 4rem;
+  }
+
+  @media (max-width: 768px){
+    flex-direction: column;
+    align-items: center;
   }
 
   @media (max-width: 480px){
@@ -21,6 +27,8 @@ export const ContainerInfoSuccess = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
+  flex: 1;
+
 
   h1 {
     line-height: 160%;
@@ -97,5 +105,11 @@ export const InfoAddress = styled.div`
 `
 
 export const ImageSuccess = styled.div`
-  width: 40%;
+  display: flex;
+  flex: 1;
+
+  img {
+    height: auto;
+    width: 100%;
+  }
 `
